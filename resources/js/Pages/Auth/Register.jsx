@@ -93,14 +93,16 @@ export default function Register() {
                     />
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    <Link href={route('login')} className="underline text-sm text-gray-600 hover:text-gray-900">
-                        Already registered?
-                    </Link>
-
-                    <Button className="ml-4" processing={processing}>
-                        Register
+                <div className="flex items-center mt-5">
+                    <Button className="bg-blue-500 hover:bg-blue-600" processing={processing}>
+                        Sign Up
                     </Button>
+                </div>
+
+                <div className="flex items-center justify-center mt-4">
+                    <Link href={route('login')} className="underline text-sm text-gray-600 hover:text-gray-900">
+                        Already have an account?
+                    </Link>
                 </div>
             </form>
         </Guest>

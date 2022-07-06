@@ -77,8 +77,8 @@ export default function ResetPassword({ token, email }) {
                     />
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    <Button className="ml-4" processing={processing}>
+                <div className="flex items-center mt-5">
+                    <Button className="bg-blue-500 hover:bg-blue-600" processing={processing}>
                         Reset Password
                     </Button>
                 </div>

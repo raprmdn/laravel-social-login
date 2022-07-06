@@ -48,7 +48,6 @@ export default function Login({ status, canResetPassword }) {
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        isFocused={true}
                         handleChange={onHandleChange}
                     />
                 </div>
@@ -66,28 +65,46 @@ export default function Login({ status, canResetPassword }) {
                     />
                 </div>
 
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
-
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                <div className="block mt-5">
+                    <label className="flex items-center justify-between">
+                        <span className="flex items-center">
+                            <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
+                            <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                        </span>
+                        {canResetPassword && (
+                            <Link
+                                href={route('password.request')}
+                                className="underline text-sm text-gray-600 hover:text-gray-900"
+                            >
+                                Forgot your password?
+                            </Link>
+                        )}
                     </label>
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <Button className="ml-4" processing={processing}>
-                        Log in
+                <div className="flex items-center mt-5">
+                    <Button className="bg-blue-500 hover:bg-blue-600" processing={processing}>
+                        Sign In
                     </Button>
                 </div>
+
+                <div className="flex justify-center mt-3 text-sm text-gray-400 font-bold">
+                    OR
+                </div>
+
+                <a href={route('sso', 'google')} className="w-full inline-flex items-center justify-center mt-3 px-4 py-3 bg-gray-100 hover:bg-gray-200 transition-colors duration-300 text-gray-500 font-medium rounded-md text-sm">
+                    <img src="https://img.icons8.com/color/24/000000/google-logo.png" className="mr-2" />
+                    <span>Continue with Google</span>
+                </a>
+
+                <a href={route('sso', 'github')} className="w-full inline-flex items-center justify-center mt-3 px-4 py-3 bg-gray-100 hover:bg-gray-200 transition-colors duration-300 text-gray-500 font-medium rounded-md text-sm">
+                    <img src="https://img.icons8.com/ios-glyphs/24/000000/github.png" className="mr-2"/>
+                    <span>Continue with Github</span>
+                </a>
+
+                <Link href={route('register')} className="flex justify-center mt-5 text-xs text-gray-400 font-medium">
+                    Register for a new account
+                </Link>
             </form>
         </Guest>
     );

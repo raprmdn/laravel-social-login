@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\SingleSignOnController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,5 +29,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('guest')->group(function () {
+    Route::get('login/{provider}', [SingleSignOnController::class, 'provider'])->name('sso');
+    Route::get('login/{provider}/callback', [SingleSignOnController::class, 'callback']);
+});
 
 require __DIR__.'/auth.php';
